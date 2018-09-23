@@ -1,4 +1,10 @@
-
+/*
+TODO:
+1) fix css
+2) actually perform calculations
+3) make README
+4) Decide on license
+*/
 void clickButton(string args){
     print(args);
  
