@@ -1,4 +1,9 @@
 
+void clickButton(string args){
+    print(args);
+ 
+}
+
 Gtk.Button cusButton(string label,Gtk.Box grid,bool right ){
     var button  = new Gtk.Button.with_label(label);    
     
@@ -9,13 +14,9 @@ Gtk.Button cusButton(string label,Gtk.Box grid,bool right ){
     else{
         button.get_style_context().add_class("left");
     }
+    button.clicked.connect(()=>clickButton(label));
     return button;   
 }
-void maisn(string args){
-    print(args);
- 
-}
-
 public class window:Gtk.ApplicationWindow{
     internal window(MyApplication app){
         Object (application:app,title:"TCalc");
@@ -70,7 +71,7 @@ public class window:Gtk.ApplicationWindow{
         parent.pack_start(row5,true,true,0);
         
         
-        sev_button.clicked.connect(()=>maisn("YOLO"));
+        
         this.add(parent);
         
 
