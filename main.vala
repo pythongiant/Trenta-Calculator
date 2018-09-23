@@ -5,22 +5,24 @@ TODO:
 3) make README
 4) Decide on license
 */
-void clickButton(string args){
-    print(args);
- 
+void clickButton(string args,Gtk.Entry entry){
+    if (args != "="){
+    string orgText = entry.get_text();
+    entry.set_text(orgText + args);
+}
 }
 
-Gtk.Button cusButton(string label,Gtk.Box grid,bool right ){
+Gtk.Button cusButton(string label,Gtk.Box grid,bool right,Gtk.Entry entry ){
     var button  = new Gtk.Button.with_label(label);    
     
-    grid.pack_start(button,true,true,1);
+    grid.pack_start(button,true,true,0);
     if (!right){
         button.get_style_context().add_class("button");
     }
     else{
         button.get_style_context().add_class("left");
     }
-    button.clicked.connect(()=>clickButton(label));
+    button.clicked.connect(()=>clickButton(label,entry));
     return button;   
 }
 public class window:Gtk.ApplicationWindow{
@@ -35,49 +37,46 @@ public class window:Gtk.ApplicationWindow{
         var row0 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
         
         Gtk.Entry entry = new Gtk.Entry ();
-        entry.activate.connect(()=>maisn("YOLO"));
-		row0.pack_start(entry,true,true,0);
+        
+        row0.pack_start(entry,true,true,0);
+        entry.get_style_context().add_class("inp");
         //Row 1
-        //int left, int top, int width , int height 
+        //int left, int top, int width , int height
         var row1 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var clear_button = cusButton("a",row1,false);
-        var ac_button = cusButton("<",row1,false);
-        var perc_button = cusButton("%",row1,false);
-        var div_button = cusButton("c",row1,true);
+
+        var one_button = cusButton("7",row1,false,entry);
+        var two_button = cusButton("8",row1,false,entry);
+        var three_button = cusButton("9",row1,false,entry);
+        var sub42_button = cusButton("\u00D7",row1,true,entry);
+        
         
         //Row 2
         var row2 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var sev_button = cusButton("7",row2,false);
-        var eight_button = cusButton("8",row2,false);
-        var nine_button = cusButton("9",row2,false);
-        var multi_button = cusButton("b",row2,true);
+        
+        var four1_button = cusButton("4",row2,false,entry);
+        var five2_button = cusButton("5",row2,false,entry);
+        var six3_button = cusButton("6",row2,false,entry);
+        var sub4_button = cusButton("\u2212",row2,true,entry);
+        
         //Row 3
         var row3 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var four_button = cusButton("4",row3,false);
-        var five_button = cusButton("5",row3,false);
-        var six_button = cusButton("6",row3,false);
-        var sub_button = cusButton("a",row3,true);
+        var four_button = cusButton("1",row3,false,entry);
+        var five_button = cusButton("2",row3,false,entry);
+        var six_button = cusButton("3",row3,false,entry);
+        var sub_button = cusButton("+",row3,true,entry);
+        
         //Row 4
-        var row4 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var one_button = cusButton("1",row4,false);
-        var two_button = cusButton("2",row4,false);
-        var three_button = cusButton("3",row4,false);
-        var plus_button = cusButton("d",row4,true);
-        //Row 5
         var row5 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var zero_button = cusButton("0",row5,false);
-        var deci_button = cusButton(".",row5,false);
-        var ans_button = cusButton("=",row5,true);
+        var zero_button = cusButton("0",row5,false,entry);
+        var deci_button = cusButton("\u2022",row5,false,entry);
+        var perc_button = cusButton("%",row5,false,entry);
+        var ans_button = cusButton("=",row5,true,entry);
 
         parent.pack_start(row0,true,true,0);
         parent.pack_start(row1,true,true,0);
         parent.pack_start(row2,true,true,0);
         parent.pack_start(row3,true,true,0);
-        parent.pack_start(row4,true,true,0);
         parent.pack_start(row5,true,true,0);
-        
-        
-        
         this.add(parent);
         
 
