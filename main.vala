@@ -1,13 +1,19 @@
 
-Gtk.Button cusButton(string label,Gtk.Box grid ){
+Gtk.Button cusButton(string label,Gtk.Box grid,bool right ){
     var button  = new Gtk.Button.with_label(label);    
     
-    grid.pack_start(button,true,true,2);
-    button.get_style_context().add_class("button");
+    grid.pack_start(button,true,true,1);
+    if (!right){
+        button.get_style_context().add_class("button");
+    }
+    else{
+        button.get_style_context().add_class("left");
+    }
     return button;   
 }
-void maisn(){
-    print("hello");
+void maisn(string args){
+    print(args);
+ 
 }
 
 public class window:Gtk.ApplicationWindow{
@@ -22,49 +28,49 @@ public class window:Gtk.ApplicationWindow{
         var row0 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
         
         Gtk.Entry entry = new Gtk.Entry ();
-        entry.activate.connect(maisn);
+        entry.activate.connect(()=>maisn("YOLO"));
 		row0.pack_start(entry,true,true,0);
         //Row 1
         //int left, int top, int width , int height 
         var row1 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var clear_button = cusButton("a",row1);
-        var ac_button = cusButton("<",row1);
-        var perc_button = cusButton("%",row1);
-        var div_button = cusButton("/",row1);
+        var clear_button = cusButton("a",row1,false);
+        var ac_button = cusButton("<",row1,false);
+        var perc_button = cusButton("%",row1,false);
+        var div_button = cusButton("c",row1,true);
         
         //Row 2
         var row2 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var sev_button = cusButton("7",row2);
-        var eight_button = cusButton("8",row2);
-        var nine_button = cusButton("9",row2);
-        var multi_button = cusButton("x",row2);
+        var sev_button = cusButton("7",row2,false);
+        var eight_button = cusButton("8",row2,false);
+        var nine_button = cusButton("9",row2,false);
+        var multi_button = cusButton("b",row2,true);
         //Row 3
         var row3 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var four_button = cusButton("4",row3);
-        var five_button = cusButton("5",row3);
-        var six_button = cusButton("6",row3);
-        var sub_button = cusButton("-",row3);
+        var four_button = cusButton("4",row3,false);
+        var five_button = cusButton("5",row3,false);
+        var six_button = cusButton("6",row3,false);
+        var sub_button = cusButton("a",row3,true);
         //Row 4
         var row4 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var one_button = cusButton("1",row4);
-        var two_button = cusButton("2",row4);
-        var three_button = cusButton("3",row4);
-        var plus_button = cusButton("+",row4);
+        var one_button = cusButton("1",row4,false);
+        var two_button = cusButton("2",row4,false);
+        var three_button = cusButton("3",row4,false);
+        var plus_button = cusButton("d",row4,true);
         //Row 5
         var row5 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var zero_button = cusButton("0",row5);
-        var deci_button = cusButton(".",row5);
-        var ans_button = cusButton("=",row5);
+        var zero_button = cusButton("0",row5,false);
+        var deci_button = cusButton(".",row5,false);
+        var ans_button = cusButton("=",row5,true);
 
-        parent.pack_start(row0,true,true,5);
-        parent.pack_start(row1,true,true,5);
-        parent.pack_start(row2,true,true,5);
-        parent.pack_start(row3,true,true,5);
-        parent.pack_start(row4,true,true,5);
-        parent.pack_start(row5,true,true,5);
+        parent.pack_start(row0,true,true,0);
+        parent.pack_start(row1,true,true,0);
+        parent.pack_start(row2,true,true,0);
+        parent.pack_start(row3,true,true,0);
+        parent.pack_start(row4,true,true,0);
+        parent.pack_start(row5,true,true,0);
         
         
-        sev_button.clicked.connect(maisn);
+        sev_button.clicked.connect(()=>maisn("YOLO"));
         this.add(parent);
         
 
