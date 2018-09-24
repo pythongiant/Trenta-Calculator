@@ -104,7 +104,7 @@ public class MyApplication : Gtk.Application {
         new window (this).show_all();
     }
     internal MyApplication () {
-		Object (application_id: "org.example.MyApplication");
+		Object (application_id: "io.trenta.calculator");
 	}
 
 }
