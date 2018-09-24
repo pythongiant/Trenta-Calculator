@@ -4,19 +4,27 @@
     font-weight: bold;
     font-size: 1.125em;
 }
+<<<<<<< HEAD
 .zero{
   background: #d9d9d9;
   border-bottom-color: #dae1e8;
   border-radius: 0px;
   border-bottom:1px solid;  
 }
+=======
+>>>>>>> 99064e9831804ff019c268b167e00b8359f3aaa7
 .button{
  background: #d9d9d9;
  border-bottom-color: #dae1e8;
  border-radius: 0px;
+<<<<<<< HEAD
  border-bottom:1px solid;
 }
 
+=======
+ border-bottom:2px solid;
+}
+>>>>>>> 99064e9831804ff019c268b167e00b8359f3aaa7
 .button:active {
     color: #ffffff;
     border-bottom-color: #5d5f6c;
@@ -26,7 +34,11 @@
     color: #ffffff;
     background: #f1b254;
     border-radius: 0px;
+<<<<<<< HEAD
     border-bottom:1px solid;
+=======
+    border-bottom:2px solid;
+>>>>>>> 99064e9831804ff019c268b167e00b8359f3aaa7
     border-bottom-color: #E14D00;
 }
 .left:active {

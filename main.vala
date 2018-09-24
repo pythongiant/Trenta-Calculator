@@ -142,7 +142,7 @@ public class MyApplication : Gtk.Application {
         new window (this).show_all();
     }
     internal MyApplication () {
-		Object (application_id: "org.example.MyApplication");
+		Object (application_id: "io.trenta.calculator");
 	}
 
 }
@@ -150,3 +150,7 @@ public static int main(string[] args) {
     return new MyApplication().run(args);
 
 }
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 99064e9831804ff019c268b167e00b8359f3aaa7
