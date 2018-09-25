@@ -5,7 +5,7 @@ public class window:Gtk.ApplicationWindow{
 
     public void perform_cal(){
         for(var i =0; i <= this.calcs.length;i++){
-          print(this.calcs[i]+",");
+          print(this.calcs[i]+"\n");
         }
     }
     public bool containDec(){
@@ -34,13 +34,29 @@ public class window:Gtk.ApplicationWindow{
           }
           //everything else
          else if(lab =="+"||lab =="\u2212"||lab =="\u00D7"){
-            this.calcs +=org_tex;
-            entry.set_text("");    
+            switch (lab) {
+            case "\u00D7":
+                this.calcs += org_tex;
+                this.calcs += "*";
+                break;
+            case "\u2212":
+                this.calcs += org_tex;
+                this.calcs +="-";
+                break;
+            case "+":
+                this.calcs += org_tex;
+                this.calcs +="+"; 
+                break;   
+            default:
+                break;
+            }
+            entry.set_text("");
         }
         else if(lab == "="){
             this.calcs +=org_tex;
             perform_cal();
             this.calcs = {};
+            entry.set_text("");
         }
         else{
             
