@@ -1,13 +1,43 @@
-
+public float multiply(float a , float b){
+    return a * b;
+}
+public float addNum(float a , float b){
+    return a + b;
+}
+public float sub(float a , float b){
+    return a - b;
+}
 
 public class window:Gtk.ApplicationWindow{
-     string[] calcs={};
-
-    public void perform_cal(){
+    string[] calcs={};
+    
+    public string perform_cal(){
+        string ansr = "";
         for(var i =0; i <= this.calcs.length;i++){
-          print(this.calcs[i]+"\n");
+          if((i+1)%2 == 0){
+            print("operand:");
+            switch(this.calcs[i]){
+                case "*":
+                    ansr = multiply(float.parse(this.calcs[i-1]),float.parse(this.calcs[i+1])).to_string();
+                break;
+                case "+":
+                    ansr = addNum(float.parse(this.calcs[i-1]),float.parse(this.calcs[i+1])).to_string();
+                    break;
+                case "-":
+                    ansr = sub(float.parse(this.calcs[i-1]),float.parse(this.calcs[i+1])).to_string();
+                    break;       
+                default:
+                break;
+
+            }
         }
+            
+        }
+        this.calcs = {};
+        return ansr;
     }
+    /*
+    3,4,5,6,7,8,9
     public bool containDec(){
         
         bool operation = false;
@@ -18,7 +48,8 @@ public class window:Gtk.ApplicationWindow{
             }
         }
         return operation;
-    } 
+    }
+     */ 
     public void clickButton(string lab,Gtk.Entry entry){
           var org_tex = entry.get_text();
           bool negative = false;
@@ -54,9 +85,9 @@ public class window:Gtk.ApplicationWindow{
         }
         else if(lab == "="){
             this.calcs +=org_tex;
-            perform_cal();
-            this.calcs = {};
-            entry.set_text("");
+            string answer = this.perform_cal();
+            
+            entry.set_text(answer);
         }
         else{
             
