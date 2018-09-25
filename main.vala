@@ -20,23 +20,33 @@ public class window:Gtk.ApplicationWindow{
         return operation;
     } 
     public void clickButton(string lab,Gtk.Entry entry){
+          var org_tex = entry.get_text();
           bool negative = false;
           //empty decimal point
           if(entry.get_text()=="" && lab == "\u2022"){
             entry.set_text("0.");  
-            this.calcs += lab;
+            
           }
           //decimal point
-          else if(lab =="\u2022"){
-            var org_tex = entry.get_text();
+         else if(lab =="\u2022"){
+            
             entry.set_text(org_tex+".");
           }
           //everything else
-          else{
-            var org_tex = entry.get_text();
-            entry.set_text(org_tex+lab);
-          }
-          perform_cal();
+         else if(lab =="+"||lab =="\u2212"||lab =="\u00D7"){
+            this.calcs +=org_tex;
+            entry.set_text("");    
+        }
+        else if(lab == "="){
+            this.calcs +=org_tex;
+            perform_cal();
+            this.calcs = {};
+        }
+        else{
+            
+            entry.set_text(org_tex+lab);    
+        }
+          
           
       }
 
@@ -150,7 +160,3 @@ public static int main(string[] args) {
     return new MyApplication().run(args);
 
 }
-<<<<<<< HEAD
-=======
- 
->>>>>>> 99064e9831804ff019c268b167e00b8359f3aaa7
