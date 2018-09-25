@@ -7,6 +7,9 @@ public float addNum(float a , float b){
 public float sub(float a , float b){
     return a - b;
 }
+public float divide(float a,float b){
+    return a/b;
+}
 
 public class window:Gtk.ApplicationWindow{
     string[] calcs={};
@@ -25,7 +28,10 @@ public class window:Gtk.ApplicationWindow{
                     break;
                 case "-":
                     ansr = sub(float.parse(this.calcs[i-1]),float.parse(this.calcs[i+1])).to_string();
-                    break;       
+                    break;  
+                case "/":
+                    ansr = divide(float.parse(this.calcs[i-1]),float.parse(this.calcs[i+1])).to_string();
+                    break;
                 default:
                 break;
 
@@ -50,6 +56,7 @@ public class window:Gtk.ApplicationWindow{
         return operation;
     }
      */ 
+    
     public void clickButton(string lab,Gtk.Entry entry){
           var org_tex = entry.get_text();
           bool negative = false;
@@ -63,8 +70,11 @@ public class window:Gtk.ApplicationWindow{
             
             entry.set_text(org_tex+".");
           }
-          //everything else
-         else if(lab =="+"||lab =="\u2212"||lab =="\u00D7"){
+          else if (lab == "%"){
+            entry.set_text((float.parse(org_tex)/100).to_string());
+          }
+          //All Calculation Operators
+         else if(lab =="+"||lab =="\u2212"||lab =="\u00D7" || lab == "\u00F7"){
             switch (lab) {
             case "\u00D7":
                 this.calcs += org_tex;
@@ -78,9 +88,23 @@ public class window:Gtk.ApplicationWindow{
                 this.calcs += org_tex;
                 this.calcs +="+"; 
                 break;   
+            case "\u00F7":
+
+                this.calcs += org_tex;
+                this.calcs +="/"; 
+            break;   
             default:
                 break;
             }
+            entry.set_text("");
+        }
+        else if(lab == "±"){
+            if(float.parse(org_tex) > 0 ){
+                entry.set_text("-"+org_tex);
+            }
+        }
+
+        else if(lab == "C"){
             entry.set_text("");
         }
         else if(lab == "="){
@@ -90,7 +114,6 @@ public class window:Gtk.ApplicationWindow{
             entry.set_text(answer);
         }
         else{
-            
             entry.set_text(org_tex+lab);    
         }
           
