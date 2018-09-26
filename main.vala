@@ -42,9 +42,10 @@ public class window:Gtk.ApplicationWindow{
         this.calcs = {};
         return ansr;
     }
-    
+    string original;
     public void clickButton(string lab,Gtk.Entry entry){
           var org_tex = entry.get_text();
+          original = org_tex;
           bool negative = false;
           //empty decimal point
           if(entry.get_text()=="" && lab == "\u2022"){
@@ -132,7 +133,14 @@ public class window:Gtk.ApplicationWindow{
         var row0 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
 
         Gtk.Entry entry = new Gtk.Entry ();
+        entry.activate.connect(()=>{
 
+            this.calcs +=original;
+            string answer = this.perform_cal();
+            
+            entry.set_text(answer);
+
+        });
         row0.pack_start(entry,true,true,0);
 
         entry.set_alignment(1);
@@ -172,7 +180,7 @@ public class window:Gtk.ApplicationWindow{
 
         //Row 4
         var row5 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var exp_zero = new Gtk.Button.with_label("0");//Expand the 0 button (temporary)
+        var exp_zero = new Gtk.Button.with_label("0");
         exp_zero.clicked.connect(()=>this.clickButton("0",entry));
         exp_zero.get_style_context().add_class("zero");
         
@@ -195,13 +203,6 @@ public class window:Gtk.ApplicationWindow{
 
 public class MyApplication : Gtk.Application {
     protected override void activate(){
-        var gtk_settings = Gtk.Settings.get_default ();
-
-        if (gtk_settings != null)
-        {
-            gtk_settings.gtk_application_prefer_dark_theme = true;
-        }
-
         //CSS
         string path = "style.css";
         var css_provider = new Gtk.CssProvider();
