@@ -8,6 +8,7 @@
   background: #d9d9d9;
   border-bottom-color: #dae1e8;
   border-radius: 0px;
+  padding-right: 3em;
   border-bottom:1px solid;  
 }
 .button{
@@ -33,9 +34,13 @@
     color: #ffffff;
     background: #E14D00;
 }
+.zero:active{
+    color: #ffffff;
+    background: #E14D00;
+}
 .inp{
     background: #363739;
     color:#d9d9d9;
     caret-color: #d9d9d9;
-    font-size: 1.5em;
+    font-size: 2.5em;
 }

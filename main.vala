@@ -122,7 +122,7 @@ public class window:Gtk.ApplicationWindow{
           return button;
       }
     internal window(MyApplication app){
-        Object (application:app,title:"TCalc");
+        Object (application:app,title:"Calculator");
         this.set_default_size(220,350);
 
 
@@ -172,10 +172,11 @@ public class window:Gtk.ApplicationWindow{
 
         //Row 4
         var row5 = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
-        var zero_button = this.cusButton("0",row5,false,entry);
-        var exp_zero = new Gtk.Button.with_label("⠀");//Expand the 0 button (temporary)
-
+        var exp_zero = new Gtk.Button.with_label("0");//Expand the 0 button (temporary)
+        exp_zero.clicked.connect(()=>this.clickButton("0",entry));
         exp_zero.get_style_context().add_class("zero");
+        
+       
         row5.pack_start(exp_zero,true,true,0);
         var deci_button = this.cusButton("\u2022",row5,false,entry);
         var ans_button = this.cusButton("=",row5,true,entry);
