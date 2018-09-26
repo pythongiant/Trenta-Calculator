@@ -18,7 +18,7 @@ public class window:Gtk.ApplicationWindow{
         string ansr = "";
         for(var i =0; i <= this.calcs.length;i++){
           if((i+1)%2 == 0){
-            print("operand:");
+            
             switch(this.calcs[i]){
                 case "*":
                     ansr = multiply(float.parse(this.calcs[i-1]),float.parse(this.calcs[i+1])).to_string();
@@ -42,20 +42,6 @@ public class window:Gtk.ApplicationWindow{
         this.calcs = {};
         return ansr;
     }
-    /*
-    3,4,5,6,7,8,9
-    public bool containDec(){
-        
-        bool operation = false;
-        for (var y =0; y <= this.calcs.length;y++){
-           
-            if(this.calcs[y] =="+"||this.calcs[y] =="\u2212"||this.calcs[y] =="\u00D7"){
-                operation = true;
-            }
-        }
-        return operation;
-    }
-     */ 
     
     public void clickButton(string lab,Gtk.Entry entry){
           var org_tex = entry.get_text();
@@ -148,6 +134,8 @@ public class window:Gtk.ApplicationWindow{
         Gtk.Entry entry = new Gtk.Entry ();
 
         row0.pack_start(entry,true,true,0);
+
+        entry.set_alignment(1);
         entry.get_style_context().add_class("inp");
         //Sev Calc
         var spec_row = new Gtk.Box(Gtk.Orientation.HORIZONTAL,0);
@@ -206,7 +194,7 @@ public class window:Gtk.ApplicationWindow{
 
 public class MyApplication : Gtk.Application {
     protected override void activate(){
-
+        Gtk.Settings.get_default().set("gtk-application-prefer-dark-theme", true);
         //CSS
         string path = "style.css";
         var css_provider = new Gtk.CssProvider();
