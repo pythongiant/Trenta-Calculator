@@ -194,7 +194,13 @@ public class window:Gtk.ApplicationWindow{
 
 public class MyApplication : Gtk.Application {
     protected override void activate(){
-        Gtk.Settings.get_default().set("gtk-application-prefer-dark-theme", true);
+        var gtk_settings = Gtk.Settings.get_default ();
+
+        if (gtk_settings != null)
+        {
+            gtk_settings.gtk_application_prefer_dark_theme = true;
+        }
+
         //CSS
         string path = "style.css";
         var css_provider = new Gtk.CssProvider();
