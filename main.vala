@@ -184,7 +184,16 @@ public class window:Gtk.ApplicationWindow{
         exp_zero.clicked.connect(()=>this.clickButton("0",entry));
         exp_zero.get_style_context().add_class("zero");
         
-       
+        entry.key_press_event.connect ((key) => {
+            bool text = true;
+            for (int z =0 ; z <= 9; z++){
+            if(key.str ==z.to_string() ){
+                text = false;
+            }
+            
+        }
+        return text;
+        });
         row5.pack_start(exp_zero,true,true,0);
         var deci_button = this.cusButton("\u2022",row5,false,entry);
         var ans_button = this.cusButton("=",row5,true,entry);
@@ -220,8 +229,8 @@ public class MyApplication : Gtk.Application {
     internal MyApplication () {
 		Object (application_id: "io.trenta.calculator");
 	}
-
 }
+
 public static int main(string[] args) {
     return new MyApplication().run(args);
 
