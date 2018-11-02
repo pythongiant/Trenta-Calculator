@@ -1,3 +1,4 @@
+/*math functions*/
 public float multiply(float a , float b){
     return a * b;
 }
@@ -7,10 +8,10 @@ public float addNum(float a , float b){
 public float sub(float a , float b){
     return a - b;
 }
-public float divide(float a,float b){
+public float divide(float a,float b){c
     return a/b;
 }
-
+/* end Math  */ 
 public class window:Gtk.ApplicationWindow{
     string[] calcs={};
     
@@ -107,21 +108,21 @@ public class window:Gtk.ApplicationWindow{
           
       }
 
+    /*Custom Button Builder to reduce boilerplate */
+    Gtk.Button cusButton(string label,Gtk.Box grid,bool right,Gtk.Entry entry ){
 
-      Gtk.Button cusButton(string label,Gtk.Box grid,bool right,Gtk.Entry entry ){
-
-          var button  = new Gtk.Button.with_label(label);
-
-          grid.pack_start(button,true,true,0);
-          if (!right){
-              button.get_style_context().add_class("button");
-          }
-          else{
-              button.get_style_context().add_class("left");
-          }
-          button.clicked.connect(()=>this.clickButton(label,entry));
-          return button;
+      var button  = new Gtk.Button.with_label(label);
+      grid.pack_start(button,true,true,0);
+      if (!right){
+          button.get_style_context().add_class("button");
       }
+      else{
+          button.get_style_context().add_class("left");
+      }
+      button.clicked.connect(()=>this.clickButton(label,entry));
+      return button;
+     }
+
     internal window(MyApplication app){
         Object (application:app,title:"Calculator");
         this.set_default_size(220,350);
@@ -197,7 +198,7 @@ public class window:Gtk.ApplicationWindow{
         row5.pack_start(exp_zero,true,true,0);
         var deci_button = this.cusButton("\u2022",row5,false,entry);
         var ans_button = this.cusButton("=",row5,true,entry);
-
+        /*Add to parent row*/
         parent.pack_start(row0,true,true,0);
         parent.pack_start(spec_row,true,true,0);
         parent.pack_start(row1,true,true,0);
@@ -205,9 +206,7 @@ public class window:Gtk.ApplicationWindow{
         parent.pack_start(row3,true,true,0);
         parent.pack_start(row5,true,true,0);
         this.add(parent);
-
-
-    }
+     }
 }
 
 public class MyApplication : Gtk.Application {
@@ -216,14 +215,12 @@ public class MyApplication : Gtk.Application {
         string path = "style.css";
         var css_provider = new Gtk.CssProvider();
 
-            try {
-                css_provider.load_from_path(path);
-                Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
-
-            } catch (Error e) {
-
-                error ("Cannot load CSS stylesheet: %s", e.message);
-            }
+        try {
+            css_provider.load_from_path(path);
+            Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+        } catch (Error e) {
+            error ("Cannot load CSS stylesheet: %s", e.message);
+        }
         new window (this).show_all();
     }
     internal MyApplication () {
@@ -233,5 +230,4 @@ public class MyApplication : Gtk.Application {
 
 public static int main(string[] args) {
     return new MyApplication().run(args);
-
 }
