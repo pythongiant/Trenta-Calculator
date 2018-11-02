@@ -8,7 +8,7 @@ public float addNum(float a , float b){
 public float sub(float a , float b){
     return a - b;
 }
-public float divide(float a,float b){c
+public float divide(float a,float b){
     return a/b;
 }
 /* end Math  */ 
