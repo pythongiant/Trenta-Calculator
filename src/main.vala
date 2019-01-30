@@ -17,7 +17,7 @@ public class window:Gtk.ApplicationWindow{
                     answer -= float.parse(this.calcs[i+1]);
                     break;  
                 case "/":
-                    answer = float.parse(this.calcs[i+1])/answer;
+                    answer = answer/float.parse(this.calcs[i+1]);
                     break;
                 default:
                     break;
